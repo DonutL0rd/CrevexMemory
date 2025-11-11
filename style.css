@@ -599,20 +599,106 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
             .container {
-                padding: 24px;
+                padding: 20px;
+            }
+
+            .header {
+                margin-bottom: 30px;
             }
 
             h1 {
-                font-size: 2em;
+                font-size: 2.2em;
+            }
+
+            .subtitle {
+                font-size: 14px;
             }
 
             .progress-steps {
                 flex-direction: column;
-                gap: 8px;
+                gap: 10px;
             }
 
             .step {
                 width: 100%;
+                padding: 10px 12px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .primary-btn, .secondary-btn {
+                width: 100%;
+            }
+
+            .sentence-controls {
+                flex-direction: column;
+            }
+
+            .sentence-item {
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .sentence-text {
+                font-size: 14px;
+            }
+
+            textarea {
+                font-size: 15px;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
+
+            .legend {
+                gap: 10px;
+                justify-content: flex-start;
+            }
+
+            .legend-item {
+                width: 100%;
+            }
+
+            .comparison {
+                padding: 15px;
+            }
+
+            .diff-container {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .welcome-content {
+                padding: 24px;
+                width: 95%;
+            }
+
+            .welcome-content h2 {
+                font-size: 2em;
+            }
+
+            .welcome-content p {
+                font-size: 16px;
+            }
+
+            .welcome-features {
+                padding: 15px;
+            }
+
+            .welcome-feature {
+                font-size: 14px;
             }
         }
