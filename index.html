@@ -37,124 +37,126 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="header">
-            <h1>✨ Memory Trainer</h1>
-            <p class="subtitle">Master any text with adaptive learning</p>
+    <div class="main-content-wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>✨ Memory Trainer</h1>
+                <p class="subtitle">Master any text with adaptive learning</p>
+            </div>
+
+            <div class="progress-steps">
+                <div class="step" id="step1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Input Text</div>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Select Sentences</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Practice</div>
+                </div>
+            </div>
+
+            <div id="setupMode">
+                <div class="instructions">
+                    💡 Paste any text you want to memorize, split it into sentences, select what you'd like to study, and start training!
+                </div>
+
+                <div class="section">
+                    <label for="originalText">Your Text</label>
+                    <textarea id="originalText" rows="8" placeholder="Paste your verse, quote, poem, or any text..."></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button class="primary-btn" onclick="splitSentences()">Split into Sentences →</button>
+                </div>
+
+                <div class="section hidden" id="sentenceSection">
+                    <label>
+                        Choose Sentences to Study
+                        <span class="count-badge" id="selectedCount">0 selected</span>
+                    </label>
+                    <div class="sentence-controls">
+                        <button class="secondary-btn" onclick="selectAll()">✓ Select All</button>
+                        <button class="secondary-btn" onclick="deselectAll()">✗ Clear All</button>
+                    </div>
+                    <div class="sentence-list" id="sentenceList"></div>
+                </div>
+
+                <div class="section hidden" id="previewSection">
+                    <div class="selected-preview">
+                        <h4>📝 Your Study Material</h4>
+                        <div class="selected-preview-text" id="selectedPreview"></div>
+                    </div>
+                    <button class="primary-btn" onclick="startTraining()">Begin Training →</button>
+                </div>
+            </div>
+
+            <div id="trainingMode" class="hidden">
+                <div class="instructions">
+                    🧠 Type the text from memory. Don't worry about being perfect — you'll get detailed feedback!
+                </div>
+
+                <div class="section">
+                    <label for="userAnswer">Type From Memory</label>
+                    <textarea id="userAnswer" rows="10" placeholder="Start typing what you remember..." autofocus></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button class="primary-btn" onclick="checkAnswer()">Check My Answer</button>
+                    <button class="secondary-btn" onclick="resetTraining()">← Start Over</button>
+                </div>
+
+                <div id="comparisonSection" class="comparison hidden">
+                    <h3>📊 Results</h3>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-value" id="accuracy">-</div>
+                            <div class="stat-label">Accuracy</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="correctWords">-</div>
+                            <div class="stat-label">Correct</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="totalWords">-</div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                    </div>
+
+                    <div class="legend">
+                        <div class="legend-item">
+                            <span class="legend-badge correct">word</span>
+                            <span class="legend-label">Correct</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-badge incorrect">word</span>
+                            <span class="legend-label">Incorrect/Misspelled</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-badge missing">word</span>
+                            <span class="legend-label">Missing Word</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h4 style="color: #a78bfa; margin-bottom: 12px; font-size: 14px;">Original Text (What You Should Have Written):</h4>
+                        <div class="diff-container" id="originalDisplay"></div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #a78bfa; margin-bottom: 12px; font-size: 14px;">Your Answer:</h4>
+                        <div class="diff-container" id="userDisplay"></div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="progress-steps">
-            <div class="step" id="step1">
-                <div class="step-number">1</div>
-                <div class="step-label">Input Text</div>
-            </div>
-            <div class="step" id="step2">
-                <div class="step-number">2</div>
-                <div class="step-label">Select Sentences</div>
-            </div>
-            <div class="step" id="step3">
-                <div class="step-number">3</div>
-                <div class="step-label">Practice</div>
-            </div>
-        </div>
-
-        <div id="setupMode">
-            <div class="instructions">
-                💡 Paste any text you want to memorize, split it into sentences, select what you'd like to study, and start training!
-            </div>
-
-            <div class="section">
-                <label for="originalText">Your Text</label>
-                <textarea id="originalText" rows="8" placeholder="Paste your verse, quote, poem, or any text..."></textarea>
-            </div>
-
-            <div class="button-group">
-                <button class="primary-btn" onclick="splitSentences()">Split into Sentences →</button>
-            </div>
-
-            <div class="section hidden" id="sentenceSection">
-                <label>
-                    Choose Sentences to Study
-                    <span class="count-badge" id="selectedCount">0 selected</span>
-                </label>
-                <div class="sentence-controls">
-                    <button class="secondary-btn" onclick="selectAll()">✓ Select All</button>
-                    <button class="secondary-btn" onclick="deselectAll()">✗ Clear All</button>
-                </div>
-                <div class="sentence-list" id="sentenceList"></div>
-            </div>
-
-            <div class="section hidden" id="previewSection">
-                <div class="selected-preview">
-                    <h4>📝 Your Study Material</h4>
-                    <div class="selected-preview-text" id="selectedPreview"></div>
-                </div>
-                <button class="primary-btn" onclick="startTraining()">Begin Training →</button>
-            </div>
-        </div>
-
-        <div id="trainingMode" class="hidden">
-            <div class="instructions">
-                🧠 Type the text from memory. Don't worry about being perfect — you'll get detailed feedback!
-            </div>
-
-            <div class="section">
-                <label for="userAnswer">Type From Memory</label>
-                <textarea id="userAnswer" rows="10" placeholder="Start typing what you remember..." autofocus></textarea>
-            </div>
-
-            <div class="button-group">
-                <button class="primary-btn" onclick="checkAnswer()">Check My Answer</button>
-                <button class="secondary-btn" onclick="resetTraining()">← Start Over</button>
-            </div>
-
-            <div id="comparisonSection" class="comparison hidden">
-                <h3>📊 Results</h3>
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-value" id="accuracy">-</div>
-                        <div class="stat-label">Accuracy</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value" id="correctWords">-</div>
-                        <div class="stat-label">Correct</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value" id="totalWords">-</div>
-                        <div class="stat-label">Total</div>
-                    </div>
-                </div>
-
-                <div class="legend">
-                    <div class="legend-item">
-                        <span class="legend-badge correct">word</span>
-                        <span class="legend-label">Correct</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-badge incorrect">word</span>
-                        <span class="legend-label">Incorrect/Misspelled</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="legend-badge missing">word</span>
-                        <span class="legend-label">Missing Word</span>
-                    </div>
-                </div>
-                
-                <div style="margin-bottom: 24px;">
-                    <h4 style="color: #a78bfa; margin-bottom: 12px; font-size: 14px;">Original Text (What You Should Have Written):</h4>
-                    <div class="diff-container" id="originalDisplay"></div>
-                </div>
-                
-                <div>
-                    <h4 style="color: #a78bfa; margin-bottom: 12px; font-size: 14px;">Your Answer:</h4>
-                    <div class="diff-container" id="userDisplay"></div>
-                </div>
-            </div>
-        </div>
+        <footer>
+            <p>View this project on GitHub: <a href="https://github.com/DonutL0rd/CrevexMemory" target="_blank">Memory Trainer on GitHub</a></p>
+        </footer>
     </div>
-
-    <footer>
-        <p>View this project on GitHub: <a href="https://github.com/DonutL0rd/CrevexMemory" target="_blank">Memory Trainer on GitHub</a></p>
-    </footer>
 </body>
 </html>
